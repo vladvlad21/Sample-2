@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900");
+:root {
+    --text-color: rgb(255, 255, 255);
+    --blend-color: rgba(46, 61, 102, 0.6);
+    --bullets-color: rgb(255, 255, 255);
+    --transform-amount: 20px;
+    --bullets-count: 5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+#slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.slide.current {
+    pointer-events: initial;
+    opacity: 1;
+    z-index: 10;
+}
+
+.slide-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+    
+
+
+.img-wrapper {
+    width: 100%;
+    height: 100%;
+    background: var(--blend-color)
+}
+
+.img-wrapper img {
+    width: calc(100% + var(--transform-amount));
+    height: calc(100% + var(--transform-amount));
+    top: calc(var(--transform-amount) / 2 * -1);
+    left: calc(var(--transform-amount) / 2 * -1);
+    position: relative;
+    object-fit: cover;
+    mix-blend-mode: luminosity
+}
+
+.title-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)
+}
+
+.inner-wrapper {
+    position: absolute;
+    bottom: 5em;
+    left: 5em;
+    color: var(--text-color);
+    max-width: 70%;
+}
+
+.slide-title {
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 900;
+}
+
+.slide-subtitle {
+    font-size: 1.5em;
+}
+
+#navigation {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    z-index: 30;
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(var(--bullets-count), 60px);
+    grid-gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bullet {
+    pointer-events: initial;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 5px;
+    background: var(--bullets-color);
+    transition: opacity 0.3s ease;
+    opacity: 0.2;
+}
+
+.bullet.current {
+    opacity: 1;
+}
+
+.bullet:not(.current):hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 700px) {
+    .slide-title {
+        font-size: 3em
+    }
+    .slide-subtitle {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 500px) {
+    .inner-wrapper {
+        left: initial;
+        width: 100%;
+        max-width: initial;
+    }
+    .slide-title {
+        font-size: 4em;
+        text-align: center
+    }
+    .slide-subtitle {
+        display: none
+    }
+}
+
+@media (max-width: 450px) {
+    .slide-title {
+        font-size: 3em;
+    }
+}
